@@ -5,7 +5,16 @@ const $img = document.getElementById('image') as HTMLImageElement;
 const $txt = document.getElementById('txt');
 
 async function load() {
-    await ocr.init();
+    console.log('Starting OCR initialization...');
+    try {
+        await ocr.init();
+        console.log('OCR initialization complete.');
+        document.getElementById('isLoading').style.display = 'none';
+    } catch (error) {
+        console.error('Error during OCR initialization:', error);
+        document.getElementById('isLoading').style.display = 'none'; // Hide even on error
+        }
+    // await ocr.init();
     document.getElementById('isLoading').style.display = 'none';
 }
 
